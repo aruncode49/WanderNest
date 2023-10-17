@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listingModel");
 const path = require("path");
 const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
 
 const app = express();
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
@@ -14,6 +15,8 @@ app.set("views", path.join(__dirname, "views"));
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "/public")));
 
 // mongoose connection
 mongoose

@@ -1,37 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WanderBuddy</title>
-  </head>
-  <body>
-    <h3>Create New Listing</h3>
-    <form action="/listings" method="POST">
-      <input type="text" name="listing[title]" placeholder="Enter title" />
-      <br /><br />
-      <textarea
-        name="listing[description]"
-        placeholder="Enter description"
-      ></textarea>
-      <br /><br />
-      <input
-        type="text"
-        placeholder="Enter image URL/Link"
-        name="listing[image]"
-      />
-      <br /><br />
-      <input type="number" name="listing[price]" placeholder="Enter price" />
-      <br /><br />
-      <input type="text" name="listing[country]" placeholder="Enter country" />
-      <br /><br />
-      <input
-        type="text"
-        name="listing[location]"
-        placeholder="Enter location"
-      />
-      <br /><br />
-      <button type="submit">Create</button>
-    </form>
-  </body>
-</html>
+<% layout('/layouts/boilerplate') -%>
+<body>
+  <h3>Create New Listing</h3>
+  <form action="/listings" method="POST">
+    <input type="text" name="listing[title]" placeholder="Enter title" />
+    <br /><br />
+    <textarea
+      name="listing[description]"
+      placeholder="Enter description"
+    ></textarea>
+    <br /><br />
+    <input
+      type="text"
+      placeholder="Enter image URL/Link"
+      name="listing[image]"
+    />
+    <br /><br />
+    <input type="number" name="listing[price]" placeholder="Enter price" />
+    <br /><br />
+    <input type="text" name="listing[country]" placeholder="Enter country" />
+    <br /><br />
+    <input type="text" name="listing[location]" placeholder="Enter location" />
+    <br /><br />
+    <button type="submit">Create</button>
+  </form>
+</body>
