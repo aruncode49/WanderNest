@@ -27,6 +27,13 @@ app.get("/listings", async (req, res) => {
   res.render("listings/index.ejs", { allListings });
 });
 
+// Show Route
+app.get("/listings/:id", async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findById(id);
+  res.render("listings/show.ejs", { listing });
+});
+
 // app.get("/testListing", async (req, res) => {
 //   await Listing.create({
 //     title: "My new hotel",
