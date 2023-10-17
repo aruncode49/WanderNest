@@ -1,7 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* body */
+body {
+  font-family: "Poppins", sans-serif !important;
+}
+
+/* main title */
+.main-title {
+  margin-top: 10px !important;
+  margin-bottom: 10px;
+  font-weight: 500 !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
 /* Navbar */
 .navbar {
   height: 5rem;
   background-color: white;
+}
+
+.navbar-collapse {
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .fa-location-dot {
@@ -50,4 +74,47 @@
 
 .f-info-links a:hover {
   text-decoration: underline;
+}
+
+/* cards */
+.card-container {
+  margin-bottom: 20px;
+}
+
+.card {
+  border: none !important;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  height: 260px !important;
+  object-fit: cover !important;
+}
+
+.card-body {
+  padding: 0 !important;
+  margin-left: 5px;
+}
+
+.card-text {
+  font-weight: 400;
+}
+
+.card-title {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.card-img-overlay {
+  opacity: 0;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.2;
+  background-color: white;
 }
