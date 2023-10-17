@@ -7,6 +7,11 @@
   </head>
   <body>
     <h2>All Listings</h2>
+
+    <form action="/listings/new" method="GET">
+      <button>Create New Listing</button>
+    </form>
+
     <ul>
       <% allListings.forEach(listing => { %>
       <li><a href="/listings/<%= listing._id %>"><%= listing.title %></a></li>
