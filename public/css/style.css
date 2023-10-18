@@ -97,7 +97,6 @@ a {
   border: none !important;
   margin-bottom: 2rem;
   border-radius: 1rem;
-  cursor: pointer;
   overflow: hidden;
 }
 
@@ -138,12 +137,12 @@ a {
 }
 
 input::placeholder {
-  color: rgb(166, 166, 166) !important;
+  color: rgb(124, 124, 124) !important;
   font-size: 14px !important;
 }
 
 textarea::placeholder {
-  color: rgb(166, 166, 166) !important;
+  color: rgb(124, 124, 124) !important;
   font-size: 14px !important;
 }
 
