@@ -35,6 +35,11 @@ a {
   padding-bottom: 10px;
 }
 
+.navbar-brand {
+  display: flex;
+  gap: 6px;
+}
+
 .fa-location-dot {
   color: #fe424d;
   font-size: 2rem;
@@ -132,10 +137,6 @@ a {
   border: none !important;
 }
 
-.create-new-btn:hover {
-  background-color: #f73541 !important;
-}
-
 input::placeholder {
   color: rgb(166, 166, 166) !important;
   font-size: 14px !important;
@@ -144,4 +145,13 @@ input::placeholder {
 textarea::placeholder {
   color: rgb(166, 166, 166) !important;
   font-size: 14px !important;
+}
+
+textarea {
+  text-align: start !important;
+}
+
+.edit-btn {
+  background-color: #f73541 !important;
+  border: none !important;
 }
