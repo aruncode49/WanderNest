@@ -3,6 +3,13 @@
 /* body */
 body {
   font-family: "Poppins", sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
 }
 
 /* main title */
@@ -117,4 +124,24 @@ a {
 .card-img-overlay:hover {
   opacity: 0.2;
   background-color: white;
+}
+
+/* create new listing */
+.create-new-btn {
+  background-color: #fe424d !important;
+  border: none !important;
+}
+
+.create-new-btn:hover {
+  background-color: #f73541 !important;
+}
+
+input::placeholder {
+  color: rgb(166, 166, 166) !important;
+  font-size: 14px !important;
+}
+
+textarea::placeholder {
+  color: rgb(166, 166, 166) !important;
+  font-size: 14px !important;
 }
