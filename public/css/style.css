@@ -155,3 +155,25 @@ textarea {
   background-color: #f73541 !important;
   border: none !important;
 }
+
+/* Show page */
+.show-img {
+  height: 30vh;
+}
+
+.show-btns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: -15px !important;
+}
+
+.show-btns a {
+  padding-inline: 30px !important;
+  background-color: #f73541 !important;
+  border: none !important;
+}
+
+.show-btns button {
+  padding-inline: 30px !important;
+}
