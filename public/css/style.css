@@ -80,8 +80,8 @@ a {
 .f-info-links a {
   text-decoration: none;
   color: #222222;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 2px;
+  margin-left: 2px;
 }
 
 .f-info-links a:hover {
@@ -95,7 +95,7 @@ a {
 
 .card {
   border: none !important;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-radius: 1rem;
   overflow: hidden;
 }
