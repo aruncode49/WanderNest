@@ -48,10 +48,14 @@ app.get("/listings/:id", async (req, res) => {
 });
 
 // Create new listing
-app.post("/listings", async (req, res) => {
-  const listing = req.body.listing;
-  await Listing.create(listing);
-  res.redirect("/listings");
+app.post("/listings", async (req, res, next) => {
+  try {
+    const listing = req.body.listing;
+    await Listing.create(listing);
+    res.redirect("/listings");
+  } catch (err) {
+    next(err);
+  }
 });
 
 // edit
@@ -85,5 +89,10 @@ app.delete("/listings/:id", async (req, res) => {
 //   }).then(() => console.log("Listing created successfully"));
 //   res.send("Listing tested successfully");
 // });
+
+// handle error
+app.use((err, req, res, next) => {
+  res.send("Something went wrong!");
+});
 
 app.listen(8080, () => console.log("Server is running on port 8080"));
