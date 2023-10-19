@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
+const { listingSchema } = require("./schema.js");
 
 const app = express();
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
@@ -59,6 +60,11 @@ app.get(
 app.post(
   "/listings",
   wrapAsync(async (req, res, next) => {
+    const result = listingSchema.validate(req.body);
+    if (result.error) {
+      throw new ExpressError(400, result.error);
+    }
+
     const listing = req.body.listing;
     await Listing.create(listing);
     res.redirect("/listings");
