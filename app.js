@@ -4,6 +4,7 @@ const Listing = require("./models/listingModel");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
 
 const app = express();
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
@@ -48,15 +49,14 @@ app.get("/listings/:id", async (req, res) => {
 });
 
 // Create new listing
-app.post("/listings", async (req, res, next) => {
-  try {
+app.post(
+  "/listings",
+  wrapAsync(async (req, res, next) => {
     const listing = req.body.listing;
     await Listing.create(listing);
     res.redirect("/listings");
-  } catch (err) {
-    next(err);
-  }
-});
+  })
+);
 
 // edit
 app.get("/listings/:id/edit", async (req, res) => {
