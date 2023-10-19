@@ -21,6 +21,15 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
+// validation error middleware
+const validateListing = (req, res, next) => {
+  const { error } = listingSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(400, errMsg);
+  }
+};
+
 // mongoose connection
 mongoose
   .connect(MONGO_URL)
@@ -59,12 +68,8 @@ app.get(
 // Create new listing
 app.post(
   "/listings",
+  validateListing,
   wrapAsync(async (req, res, next) => {
-    const result = listingSchema.validate(req.body);
-    if (result.error) {
-      throw new ExpressError(400, result.error);
-    }
-
     const listing = req.body.listing;
     await Listing.create(listing);
     res.redirect("/listings");
@@ -84,6 +89,7 @@ app.get(
 // update
 app.put(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing });
