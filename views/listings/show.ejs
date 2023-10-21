@@ -2,7 +2,7 @@
 <body>
   <div class="row mt-3 mb-4">
     <div class="col-md-6 col-lg-8 mx-auto px-4">
-      <h3 class="mb-3">Listing Details</h3>
+      <h3 class="mb-2"><%= listing.title %></h3>
       <div class="card">
         <img
           src="<%= listing.image %>"
@@ -11,7 +11,6 @@
         />
         <div class="card-body mt-2">
           <p class="card-text">
-            <b><%= listing.title %></b><br />
             <%= listing.description %> <br />
             &#8377;<%= listing.price.toLocaleString("en-IN") %> <br />
             <%= listing.location %> <br />
@@ -28,6 +27,37 @@
           method="POST"
         >
           <button class="btn btn-dark">Delete</button>
+        </form>
+      </div>
+
+      <hr />
+      <!-- Review Section -->
+      <div class="mt-3 mb-3">
+        <h4>Leave A Review</h4>
+        <form action="">
+          <div class="mt-2">
+            <label class="form-label" for="rating">Rating</label>
+            <input
+              class="form-range"
+              name="rating"
+              type="range"
+              id="rating"
+              min="1"
+              max="5"
+            />
+          </div>
+
+          <div class="mt-2">
+            <label class="form-label" for="comment">Comment</label>
+            <textarea
+              class="form-control"
+              name="comment"
+              id="comment"
+              cols="30"
+              rows="5"
+            ></textarea>
+          </div>
+          <button class="btn btn-outline-dark mt-3">Submit</button>
         </form>
       </div>
     </div>
