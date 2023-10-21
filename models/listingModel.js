@@ -20,6 +20,6 @@ const listingSchema = new Schema({
   country: String,
 });
 
-const Listing = model("listing", listingSchema);
+const Listing = model("Listing", listingSchema);
 
 module.exports = Listing;
