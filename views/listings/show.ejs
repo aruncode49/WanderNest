@@ -68,6 +68,16 @@
           </div>
           <button class="btn btn-outline-dark mt-3">Submit</button>
         </form>
+
+        <!-- Show all reviews -->
+        <div class="mt-3">
+          <h5>All Reviews</h5>
+          <ul>
+            <% listing.reviews.forEach(review => { %>
+            <li><%= review.comment %>, <%= review.rating %> stars</li>
+            <% }) %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
