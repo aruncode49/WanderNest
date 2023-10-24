@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Listing = require("./models/listingModel");
+const Review = require("./models/reviewModel.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -104,6 +105,23 @@ app.delete(
     const { id } = req.params;
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
+  })
+);
+
+// Review
+// POST Route
+app.post(
+  "/listing/:id/reviews",
+  wrapAsync(async (req, res) => {
+    let listing = await Listing.findById(req.params.id);
+    let newReview = new Review(req.body.review);
+    listing.reviews.push(newReview);
+
+    await listing.save();
+    await newReview.save();
+
+    console.log("New Review Added");
+    res.status(401).redirect(`/listings/${listing._id}`);
   })
 );
 
