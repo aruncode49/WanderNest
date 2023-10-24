@@ -122,7 +122,7 @@ app.delete(
 );
 
 // Review
-// POST Route
+// POST Review Route
 app.post(
   "/listing/:id/reviews",
   validateReview,
@@ -136,6 +136,19 @@ app.post(
 
     console.log("New Review Added");
     res.status(401).redirect(`/listings/${listing._id}`);
+  })
+);
+
+// Delete Reivew Route
+app.delete(
+  "/listings/:id/reviews/:reviewId",
+  wrapAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+
+    await Review.findByIdAndDelete(reviewId);
+    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+
+    res.status(200).redirect(`/listings/${id}`);
   })
 );
 
