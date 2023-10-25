@@ -1,14 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Listing = require("./models/listingModel");
-const Review = require("./models/reviewModel.js");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { reviewSchema } = require("./schema.js");
+
 const listingRoutes = require("./routes/listingRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 
 const app = express();
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
@@ -23,16 +21,6 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-const validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
-
 // mongoose connection
 mongoose
   .connect(MONGO_URL)
@@ -44,49 +32,9 @@ app.get("/", (req, res) => {
   res.send("Hii, I am root");
 });
 
+// express routes
 app.use("/listings", listingRoutes);
-
-// Review
-// POST Review Route
-app.post(
-  "/listing/:id/reviews",
-  validateReview,
-  wrapAsync(async (req, res) => {
-    let listing = await Listing.findById(req.params.id);
-    let newReview = new Review(req.body.review);
-    listing.reviews.push(newReview);
-
-    await listing.save();
-    await newReview.save();
-
-    console.log("New Review Added");
-    res.status(401).redirect(`/listings/${listing._id}`);
-  })
-);
-
-// Delete Reivew Route
-app.delete(
-  "/listings/:id/reviews/:reviewId",
-  wrapAsync(async (req, res) => {
-    const { id, reviewId } = req.params;
-
-    await Review.findByIdAndDelete(reviewId);
-    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-
-    res.status(200).redirect(`/listings/${id}`);
-  })
-);
-
-// app.get("/testListing", async (req, res) => {
-//   await Listing.create({
-//     title: "My new hotel",
-//     description: "The new hotel with swimming pool",
-//     price: 1200,
-//     location: "the new street in los angles",
-//     country: "America",
-//   }).then(() => console.log("Listing created successfully"));
-//   res.send("Listing tested successfully");
-// });
+app.use("/listings/:id/reviews", reviewRoutes);
 
 // for all routes excepted aboves
 app.all("*", (req, res, next) => {
