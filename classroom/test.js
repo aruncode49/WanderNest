@@ -21,10 +21,15 @@ const sessionOptions = {
 app.use(expressSession(sessionOptions));
 app.use(flash());
 
+app.use((req, res, next) => {
+  res.locals.successMsg = req.flash("success");
+  res.locals.errorMsg = req.flash("error");
+  next();
+});
+
 app.get("/", (req, res) => {
   res.render("page.ejs", {
     name: req.session.name,
-    message: req.flash("success"),
   });
 });
 
@@ -32,7 +37,12 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   const { name = "anonymous" } = req.query;
   req.session.name = name;
-  req.flash("success", "User registered successfully!");
+  if (name === "anonymous") {
+    req.flash("error", "User not registered");
+  } else {
+    req.flash("success", "User registered successfully!");
+  }
+
   res.redirect("/");
 });
 
