@@ -51,6 +51,7 @@ app.get("/", (req, res) => {
 // setting up res.locals for flash messages
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 });
 
