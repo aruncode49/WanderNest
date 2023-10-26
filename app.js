@@ -5,6 +5,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const flash = require("connect-flash");
 
 const listingRoutes = require("./routes/listingRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
@@ -32,6 +33,7 @@ const sessionOption = {
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(session(sessionOption));
+app.use(flash());
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -44,6 +46,12 @@ mongoose
 // routes
 app.get("/", (req, res) => {
   res.send("Hii, I am root");
+});
+
+// setting up res.locals for flash messages
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  next();
 });
 
 // express routes
