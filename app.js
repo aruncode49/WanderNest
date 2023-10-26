@@ -4,6 +4,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
+const session = require("express-session");
 
 const listingRoutes = require("./routes/listingRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
@@ -15,9 +16,17 @@ const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// express-session
+const sessionOption = {
+  secret: "ADFI24JDAF@4#%KAD",
+  resave: false,
+  saveUninitialized: true,
+};
+
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(session(sessionOption));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
