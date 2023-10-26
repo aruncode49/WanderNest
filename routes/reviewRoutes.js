@@ -29,7 +29,7 @@ router.post(
     await listing.save();
     await newReview.save();
 
-    console.log("New Review Added");
+    req.flash("success", "New Review Created!");
     res.status(401).redirect(`/listings/${listing._id}`);
   })
 );
@@ -42,7 +42,7 @@ router.delete(
 
     await Review.findByIdAndDelete(reviewId);
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-
+    req.flash("success", "Review Deleted Successfully");
     res.status(200).redirect(`/listings/${id}`);
   })
 );
