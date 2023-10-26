@@ -13,6 +13,16 @@ app.use(
   })
 );
 
+app.get("/test-session", (req, res) => {
+  if (req.session.count) {
+    req.session.count++;
+  } else {
+    req.session.count = 1;
+  }
+
+  res.send(`You visit this website ${req.session.count} time`);
+});
+
 app.get("/", (req, res) => {
   res.end("Hello this is the test file.");
 });
