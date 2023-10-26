@@ -1,8 +1,14 @@
 const express = require("express");
 const expressSession = require("express-session");
+const flash = require("connect-flash");
+const path = require("path");
 
 const app = express();
 const PORT = 3000;
+
+// set view engine
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // session options
 const sessionOptions = {
@@ -13,15 +19,20 @@ const sessionOptions = {
 
 // use express session
 app.use(expressSession(sessionOptions));
+app.use(flash());
 
 app.get("/", (req, res) => {
-  res.send(`Hello this is the test file. Welcome ${req.session.name}`);
+  res.render("page.ejs", {
+    name: req.session.name,
+    message: req.flash("success"),
+  });
 });
 
 //   storing info in session and use that info.
 app.get("/register", (req, res) => {
   const { name = "anonymous" } = req.query;
   req.session.name = name;
+  req.flash("success", "User registered successfully!");
   res.redirect("/");
 });
 
