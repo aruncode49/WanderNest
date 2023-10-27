@@ -8,10 +8,11 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const User = require("./models/userModel.js");
 
 const listingRoutes = require("./routes/listingRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
-const User = require("./models/userModel.js");
+const userRoutes = require("./routes/userRoutes.js");
 
 const app = express();
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
@@ -82,6 +83,7 @@ app.get("/demouser", async (req, res) => {
 // express routes
 app.use("/listings", listingRoutes);
 app.use("/listings/:id/reviews", reviewRoutes);
+app.use("/", userRoutes);
 
 // for all routes excepted aboves
 app.all("*", (req, res, next) => {
