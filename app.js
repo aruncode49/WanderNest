@@ -56,7 +56,7 @@ app.use(flash());
 // passport authentication
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -66,6 +66,17 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
+});
+
+// testing fake user
+app.get("/demouser", async (req, res) => {
+  let fakeUser = new User({
+    email: "fakeemail2@gmail.com",
+    username: "demo2 user",
+  });
+
+  let newUser = await User.register(fakeUser, "helloworld");
+  res.send(newUser);
 });
 
 // express routes
