@@ -6,9 +6,12 @@ const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 
 const listingRoutes = require("./routes/listingRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
+const User = require("./models/userModel.js");
 
 const app = express();
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
@@ -32,8 +35,6 @@ const sessionOption = {
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(session(sessionOption));
-app.use(flash());
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -47,6 +48,18 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Hii, I am root");
 });
+
+// express session
+app.use(session(sessionOption));
+app.use(flash());
+
+// passport authentication
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // setting up res.locals for flash messages
 app.use((req, res, next) => {
