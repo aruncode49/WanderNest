@@ -9,6 +9,7 @@ router.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
+// signup
 router.post(
   "/signup",
   wrapAsync(async (req, res) => {
@@ -16,9 +17,14 @@ router.post(
       const { username, email, password } = req.body;
       let newUser = new User({ username, email });
       const registeredUser = await User.register(newUser, password);
-      console.log(registeredUser);
-      req.flash("success", "User created successfully");
-      res.redirect("/listings");
+      // login just after registered new user
+      req.login(registeredUser, (err) => {
+        if (err) {
+          return next(err);
+        }
+        req.flash("success", "User created successfully");
+        res.redirect("/listings");
+      });
     } catch (error) {
       req.flash("error", error.message);
       res.redirect("/signup");
