@@ -13,6 +13,10 @@ mongoose
 // initialize database
 async function initDatabase() {
   await Listing.deleteMany({});
+  initialData.data = initialData.data.map((listing) => ({
+    ...listing,
+    owner: "653cedcec509811ac344d394",
+  }));
   await Listing.insertMany(initialData.data).then((val) =>
     console.log("Data Initialized")
   );
