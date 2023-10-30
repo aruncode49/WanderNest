@@ -4,3 +4,57 @@ module.exports.getAllListings = async (req, res) => {
   const allListings = await Listing.find({});
   res.render("listings/index.ejs", { allListings });
 };
+
+// create new listing form
+module.exports.renderNewForm = (req, res) => {
+  res.render("listings/new.ejs");
+};
+
+// show listing
+module.exports.showListings = async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findById(id)
+    .populate("reviews")
+    .populate("owner");
+  if (!listing) {
+    req.flash("error", "Listing you requested for does not exist!");
+    res.redirect("/listings");
+  }
+  res.render("listings/show.ejs", { listing });
+};
+
+// create new listing - POST
+module.exports.createListing = async (req, res, next) => {
+  const listing = req.body.listing;
+  listing.owner = req.user._id;
+  await Listing.create(listing);
+  req.flash("success", "New Listing Created!");
+  res.redirect("/listings");
+};
+
+// render edit form
+module.exports.renderEditForm = async (req, res) => {
+  const { id } = req.params;
+  const listing = await Listing.findById(id);
+  if (!listing) {
+    req.flash("error", "Listing you requested for does not exist!");
+    res.redirect("/listings");
+  }
+  res.render("listings/edit.ejs", { listing });
+};
+
+// update listing
+module.exports.updateListing = async (req, res) => {
+  const { id } = req.params;
+  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+  req.flash("success", "Listing Updated Successfully!");
+  res.redirect(`/listings/${id}`);
+};
+
+// destroy listing
+module.exports.destroyListing = async (req, res) => {
+  const { id } = req.params;
+  await Listing.findByIdAndDelete(id);
+  req.flash("success", "Listing Deleted Successfully!");
+  res.redirect("/listings");
+};

@@ -2,7 +2,7 @@
 <body>
   <div class="row mt-3 mb-4">
     <div class="col-md-6 col-lg-8 mx-auto px-4">
-      <h3 class="mb-2"><%= listing.title %></h3>
+      <h3 class="mb-2 text-capitalize"><%= listing.title %></h3>
       <div class="card listing-card">
         <img
           src="<%= listing.image %>"
@@ -10,7 +10,7 @@
           class="card-img-top show-img"
         />
         <div class="card-body mt-2">
-          <p class="card-text">
+          <p class="card-text text-capitalize">
             Created by:
             <i class="text-capitalize"><%= listing.owner.username %></i> <br />
             <%= listing.description %> <br />
@@ -78,8 +78,10 @@
           <% listing.reviews.forEach(review => { %>
           <div class="card col-md-5 mx-2 mb-3 p-2">
             <div class="card-body">
-              <h5 class="card-title">John Doe</h5>
-              <p class="card-text"><small><%= review.comment %></small></p>
+              <h5 class="card-title text-capitalize">John Doe</h5>
+              <p class="card-text">
+                <small><%= review.comment %></small>
+              </p>
               <p class="card-text">
                 <% for( let i = 0; i < review.rating; i++ ) { %> ⭐ <% } %>
               </p>
