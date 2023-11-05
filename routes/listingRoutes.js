@@ -6,7 +6,8 @@ const { isLogin, isOwner, validateListing } = require("../middleware.js");
 const listingController = require("../controllers/listingContollers");
 
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage });
 
 // GET/POST -> "/"
 router
