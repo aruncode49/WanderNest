@@ -25,8 +25,10 @@ module.exports.showListings = async (req, res) => {
 
 // create new listing - POST
 module.exports.createListing = async (req, res, next) => {
+  const { path, filename } = req.file;
   const listing = req.body.listing;
   listing.owner = req.user._id;
+  listing.image = { url: path, filename };
   await Listing.create(listing);
   req.flash("success", "New Listing Created!");
   res.redirect("/listings");
