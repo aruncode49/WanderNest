@@ -50,9 +50,9 @@ mongoose
   .catch((err) => console.log(`Error in mongodb connection : ${err}`));
 
 // routes
-app.get("/", (req, res) => {
-  res.send("Hii, I am root");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hii, I am root");
+// });
 
 // express session
 app.use(session(sessionOption));

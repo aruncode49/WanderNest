@@ -37,6 +37,7 @@ a {
 
 .navbar-brand {
   display: flex;
+  align-items: center;
   gap: 6px;
 }
 
