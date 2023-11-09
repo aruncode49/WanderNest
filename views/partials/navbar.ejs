@@ -1,5 +1,36 @@
+<style>
+  .btn-search {
+    background-color: #fe424d;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+  }
+  .btn-search:hover {
+    background-color: #fe424d;
+    color: white;
+  }
+
+  .search-input {
+    border-radius: 25px;
+    padding: 0.5rem 2rem;
+    font-size: 0.8rem;
+  }
+
+  @media screen and (max-width: 700px) {
+    .navbar-search {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
+    <!-- navbar logo -->
     <a class="navbar-brand" href="/listings"
       ><i class="fa-solid fa-location-dot"></i>
       <h4 class="mt-2">Explore</h4>
@@ -15,7 +46,24 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- navbar search -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto navbar-search">
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2 search-input"
+            type="search"
+            placeholder="Search destination"
+            aria-label="Search"
+          />
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </form>
+      </div>
+
+      <!-- rest nav links -->
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/listings/new">Add new listing</a>
         <% if (!currUser) { %>
