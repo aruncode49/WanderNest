@@ -50,6 +50,10 @@ a {
   font-size: 1.1rem !important;
 }
 
+.nav-link:hover {
+  border-bottom: #222222 solid;
+}
+
 /* footer */
 
 .f-info {
