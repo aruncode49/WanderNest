@@ -16,6 +16,10 @@
     padding-right: 1.5rem;
   }
 
+  #filters a {
+    color: black;
+  }
+
   #filters::-webkit-scrollbar {
     display: none;
   }
@@ -23,12 +27,14 @@
   .filter {
     margin-top: 1.5rem;
     text-align: center;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   .filter p {
     font-size: 0.8rem;
     width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .filter:hover {
@@ -43,6 +49,7 @@
     position: fixed;
     margin-top: 5rem;
     padding-bottom: 1rem;
+    padding-top: 1rem;
   }
 
   .tax-switch {
@@ -65,12 +72,12 @@
   }
 
   #listing-container {
-    margin-top: 9rem;
+    margin-top: 11rem;
   }
 
   @media screen and (max-width: 500px) {
     #tax-switch-container {
-      margin-top: 6rem;
+      margin-top: 5rem;
       padding-right: 1.5rem;
     }
     .tax-switch {
@@ -86,54 +93,96 @@
 <body>
   <!-- filters -->
   <div id="filters">
-    <div class="filter">
-      <i class="fa-solid fa-fire"></i>
-      <p>Trending</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-bed"></i>
-      <p>Rooms</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-mountain-city"></i>
-      <p>Iconic Cities</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-mountain"></i>
-      <p>Mountains</p>
-    </div>
-    <div class="filter">
-      <i class="fa-brands fa-fort-awesome"></i>
-      <p>Castels</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-person-swimming"></i>
-      <p>Amazing Pools</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-tractor"></i>
-      <p>Farms</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-campground"></i>
-      <p>Camping</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-snowflake"></i>
-      <p>Arctic</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-umbrella-beach"></i>
-      <p>Beach</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-palette"></i>
-      <p>Creative Spaces</p>
-    </div>
-    <div class="filter">
-      <i class="fa-solid fa-golf-ball-tee"></i>
-      <p>Golfing</p>
-    </div>
+    <a href="/listings">
+      <div class="filter">
+        <i class="fa-solid fa-border-all"></i>
+        <p>All Listings</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/trending">
+      <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/rooms">
+      <div class="filter">
+        <i class="fa-solid fa-bed"></i>
+        <p>Rooms</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/iconic-cities"
+      ><div class="filter">
+        <i class="fa-solid fa-mountain-city"></i>
+        <p>Iconic Cities</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/mountains">
+      <div class="filter">
+        <i class="fa-solid fa-mountain"></i>
+        <p>Mountains</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/castels">
+      <div class="filter">
+        <i class="fa-brands fa-fort-awesome"></i>
+        <p>Castels</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/amazing-pools">
+      <div class="filter">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p>Amazing Pools</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/farms">
+      <div class="filter">
+        <i class="fa-solid fa-tractor"></i>
+        <p>Farms</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/camping">
+      <div class="filter">
+        <i class="fa-solid fa-campground"></i>
+        <p>Camping</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/arctic">
+      <div class="filter">
+        <i class="fa-solid fa-snowflake"></i>
+        <p>Arctic</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/beach">
+      <div class="filter">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <p>Beach</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/creative-spaces">
+      <div class="filter">
+        <i class="fa-solid fa-palette"></i>
+        <p>Creative Spaces</p>
+      </div>
+    </a>
+
+    <a href="/listings/search/golfing">
+      <div class="filter">
+        <i class="fa-solid fa-golf-ball-tee"></i>
+        <p>Golfing</p>
+      </div>
+    </a>
   </div>
 
   <!-- tax switch filter -->

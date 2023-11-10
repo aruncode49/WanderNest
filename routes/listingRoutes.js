@@ -43,4 +43,9 @@ router.get(
   wrapAsync(listingController.renderEditForm)
 );
 
+router.get(
+  "/search/:category",
+  wrapAsync(listingController.findListingFromCategory)
+);
+
 module.exports = router;
