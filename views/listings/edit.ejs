@@ -34,6 +34,25 @@
         </div>
 
         <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select
+            id="category"
+            class="form-select category-select"
+            aria-label="Default select example"
+            name="listing[category]"
+          >
+            <option value="<%= listing.category %>">
+              <%= listing.category.replace("-", " ")%>
+            </option>
+            <% category.forEach(c => { %>
+            <option value="<%= c %>" class="category-option">
+              <%= c.replace("-", " ") %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="mb-3">
           <label for="image" class="form-label">Original Listing Image</label>
           <br />
           <img src="<%= originalImageUrl %>" alt="Original Listing Image" />

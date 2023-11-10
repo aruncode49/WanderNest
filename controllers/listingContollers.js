@@ -5,9 +5,23 @@ module.exports.getAllListings = async (req, res) => {
   res.render("listings/index.ejs", { allListings });
 };
 
-// create new listing form
+// render new form
 module.exports.renderNewForm = (req, res) => {
-  res.render("listings/new.ejs");
+  const category = [
+    "trending",
+    "rooms",
+    "iconic-cities",
+    "mountains",
+    "castels",
+    "amazing-pools",
+    "farms",
+    "camping",
+    "arctic",
+    "beach",
+    "creative-spaces",
+    "golfing",
+  ];
+  res.render("listings/new.ejs", { category });
 };
 
 // show listing
@@ -36,6 +50,20 @@ module.exports.createListing = async (req, res, next) => {
 
 // render edit form
 module.exports.renderEditForm = async (req, res) => {
+  const category = [
+    "trending",
+    "rooms",
+    "iconic-cities",
+    "mountains",
+    "castels",
+    "amazing-pools",
+    "farms",
+    "camping",
+    "arctic",
+    "beach",
+    "creative-spaces",
+    "golfing",
+  ];
   const { id } = req.params;
   const listing = await Listing.findById(id);
   if (!listing) {
@@ -45,7 +73,7 @@ module.exports.renderEditForm = async (req, res) => {
 
   let originalImageUrl = listing.image.url;
   originalImageUrl = originalImageUrl.replace("/upload", "/upload/w_250");
-  res.render("listings/edit.ejs", { listing, originalImageUrl });
+  res.render("listings/edit.ejs", { listing, originalImageUrl, category });
 };
 
 // update listing

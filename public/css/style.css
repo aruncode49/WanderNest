@@ -155,6 +155,14 @@ textarea {
   text-align: start !important;
 }
 
+.category-select {
+  text-transform: capitalize;
+}
+
+.category-option {
+  text-transform: capitalize;
+}
+
 .edit-btn {
   background-color: #f73541 !important;
   border: none !important;

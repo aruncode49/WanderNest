@@ -13,6 +13,7 @@
         enctype="multipart/form-data"
         class="needs-validation"
       >
+        <!-- title -->
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input
@@ -25,6 +26,8 @@
           />
           <div class="invalid-feedback">Please enter a title</div>
         </div>
+
+        <!-- description -->
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
           <textarea
@@ -36,7 +39,24 @@
           ></textarea>
           <div class="invalid-feedback">Please enter a short description</div>
         </div>
+        <!-- category -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select
+            id="category"
+            class="form-select category-select"
+            aria-label="Default select example"
+            name="listing[category]"
+          >
+            <% category.forEach(c => { %>
+            <option value="<%= c %>" class="category-option">
+              <%= c.replace("-", " ") %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
 
+        <!-- image -->
         <div class="mb-3">
           <label for="image" class="form-label">Upload Listing Image</label>
           <input
@@ -48,6 +68,7 @@
           <div class="invalid-feedback">Listing image is required!</div>
         </div>
 
+        <!-- price -->
         <div class="row">
           <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Price(₹)</label>
@@ -61,6 +82,7 @@
             <div class="invalid-feedback">Please enter a valid price</div>
           </div>
 
+          <!-- country -->
           <div class="mb-3 col-md-8">
             <label for="country" class="form-label">Country</label>
             <input
@@ -74,6 +96,7 @@
           </div>
         </div>
 
+        <!-- location -->
         <div class="mb-3">
           <label for="location" class="form-label">Location</label>
           <input
