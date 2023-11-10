@@ -9,6 +9,11 @@
     overflow-x: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 99;
+    padding-right: 1.5rem;
   }
 
   #filters::-webkit-scrollbar {
@@ -31,6 +36,15 @@
     cursor: pointer;
   }
 
+  #tax-switch-container {
+    width: 100%;
+    background-color: white;
+    z-index: 99;
+    position: fixed;
+    margin-top: 5rem;
+    padding-bottom: 1rem;
+  }
+
   .tax-switch {
     display: flex;
     align-items: center;
@@ -50,10 +64,21 @@
     margin-left: 1rem !important;
   }
 
+  #listing-container {
+    margin-top: 9rem;
+  }
+
   @media screen and (max-width: 500px) {
+    #tax-switch-container {
+      margin-top: 6rem;
+      padding-right: 1.5rem;
+    }
     .tax-switch {
       justify-content: center;
       width: auto;
+    }
+    #listing-container {
+      margin-top: 10.5rem;
     }
   }
 </style>
@@ -112,21 +137,23 @@
   </div>
 
   <!-- tax switch filter -->
-  <div class="tax-switch">
-    <div class="form-check-reverse form-switch">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckDefault"
-      />
-      <label class="form-check-label" for="flexSwitchCheckDefault"
-        >Display total after taxes</label
-      >
+  <div id="tax-switch-container">
+    <div class="tax-switch">
+      <div class="form-check-reverse form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Display total after taxes</label
+        >
+      </div>
     </div>
   </div>
 
-  <div class="row row-cols-lg-3 row-cols-md-2 mt-3">
+  <div id="listing-container" class="row row-cols-lg-3 row-cols-md-2">
     <% allListings.forEach(listing => { %>
     <a class="card-container" href="/listings/<%= listing._id %>">
       <div class="card listing-card">
