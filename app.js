@@ -31,7 +31,7 @@ app.set("views", path.join(__dirname, "views"));
 const store = MongoStore.create({
   mongoUrl: dbURL,
   crypto: {
-    secret: "ADFI24JDAF@4#%KAD",
+    secret: process.env.SECRET,
   },
   touchAfter: 24 * 3600,
 });
@@ -43,7 +43,7 @@ store.on("error", (err) => {
 // express-session
 const sessionOption = {
   store,
-  secret: "ADFI24JDAF@4#%KAD",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -82,17 +82,6 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
-});
-
-// testing fake user
-app.get("/demouser", async (req, res) => {
-  let fakeUser = new User({
-    email: "fakeemail2@gmail.com",
-    username: "demo2 user",
-  });
-
-  let newUser = await User.register(fakeUser, "helloworld");
-  res.send(newUser);
 });
 
 // express routes
