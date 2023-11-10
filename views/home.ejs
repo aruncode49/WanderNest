@@ -1,0 +1,38 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<style>
+  .visit-website-btn {
+    background-color: #fe424d;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 25px;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    width: fit-content;
+  }
+  .visit-website-btn:hover {
+    background-color: #ed3642;
+    color: white;
+  }
+</style>
+
+<h2 class="text-center mt-2">Welcome to WanderNest</h2>
+<div class="row mt-3">
+  <div class="col-6">
+    <img src="/img/img1.jpg" class="card-img-top" alt="listing image" />
+  </div>
+  <div class="col-6">
+    <img src="/img/img2.jpg" class="card-img-top" alt="listing image" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <img src="/img/img3.jpg" class="card-img-top mt-3" alt="listing image" />
+  </div>
+</div>
+
+<a href="/listings" class="visit-website-btn mx-auto mb-5 mt-3">
+  Visit Website <i class="fa-solid fa-chevron-right"></i>
+</a>

@@ -84,6 +84,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// home route
+app.get("/", (req, res) => {
+  res.render("home.ejs");
+});
+
 // express routes
 app.use("/listings", listingRoutes);
 app.use("/listings/:id/reviews", reviewRoutes);
