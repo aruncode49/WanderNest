@@ -109,3 +109,20 @@ module.exports.findListingFromCategory = async (req, res) => {
     res.redirect("/listings");
   }
 };
+
+// find Listing From Search Keyword
+module.exports.findListingFromSearchKeyword = async (req, res) => {
+  const { keyword } = req.body;
+  const allListings = await Listing.find({
+    $or: [
+      { title: { $regex: keyword, $options: "i" } },
+      { description: { $regex: keyword, $options: "i" } },
+    ],
+  });
+  if (allListings.length) {
+    res.render("listings/index.ejs", { allListings });
+  } else {
+    req.flash("error", "No result found!");
+    res.redirect("/listings");
+  }
+};

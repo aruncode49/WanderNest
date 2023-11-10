@@ -43,6 +43,12 @@ router.get(
   wrapAsync(listingController.renderEditForm)
 );
 
+router.post(
+  "/search",
+  wrapAsync(listingController.findListingFromSearchKeyword)
+);
+
+// filter for category
 router.get(
   "/search/:category",
   wrapAsync(listingController.findListingFromCategory)
