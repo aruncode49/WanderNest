@@ -185,3 +185,9 @@ textarea::placeholder {
 .show-btns button {
   padding-inline: 30px !important;
 }
+
+@media screen and (max-width: 500px) {
+  textarea {
+    font-size: 16px !important;
+  }
+}
