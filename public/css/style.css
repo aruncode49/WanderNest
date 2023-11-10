@@ -151,10 +151,6 @@ textarea::placeholder {
   font-size: 14px !important;
 }
 
-textarea {
-  text-align: start !important;
-}
-
 .category-select {
   text-transform: capitalize;
 }
