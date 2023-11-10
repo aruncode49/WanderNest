@@ -23,6 +23,7 @@ const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
 
 // set view engine
 app.set("view engine", "ejs");
+app.engine("ejs", ejsMate);
 app.set("views", path.join(__dirname, "views"));
 
 // express-session
@@ -40,7 +41,6 @@ const sessionOption = {
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 // mongoose connection
