@@ -102,7 +102,6 @@ module.exports.destroyListing = async (req, res) => {
 module.exports.findListingFromCategory = async (req, res) => {
   const { category } = req.params;
   const allListings = await Listing.find({ category });
-  console.log(allListings);
   if (allListings.length) {
     res.render("listings/index.ejs", { allListings });
   } else {
