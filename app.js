@@ -19,7 +19,7 @@ const reviewRoutes = require("./routes/reviewRoutes");
 const userRoutes = require("./routes/userRoutes.js");
 
 const app = express();
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderbuddy";
+const dbURL = process.env.MONGO_ATLAS_DB_URL;
 
 // set view engine
 app.set("view engine", "ejs");
@@ -45,14 +45,9 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 // mongoose connection
 mongoose
-  .connect(MONGO_URL)
+  .connect(dbURL)
   .then((value) => console.log("MongoDB Connected"))
   .catch((err) => console.log(`Error in mongodb connection : ${err}`));
-
-// routes
-// app.get("/", (req, res) => {
-//   res.send("Hii, I am root");
-// });
 
 // express session
 app.use(session(sessionOption));
