@@ -121,7 +121,9 @@
           <% listing.reviews.forEach(review => { %>
           <div class="card col-md-5 mx-2 mb-3 p-2">
             <div class="card-body">
-              <h5 class="card-title text-capitalize">John Doe</h5>
+              <h5 class="card-title text-capitalize">
+                <%= listing.owner.username %>
+              </h5>
               <p
                 class="starability-result card-text"
                 data-rating="<%= review.rating %>"
