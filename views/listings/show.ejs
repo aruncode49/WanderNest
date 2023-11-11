@@ -10,16 +10,26 @@
           class="card-img-top show-img"
         />
         <div class="card-body mt-2">
-          <p class="card-text text-capitalize">
-            <b>Created by:</b>
-            <i class="text-capitalize"><%= listing.owner.username %></i> <br />
-            <b class="mt-2">Description: </b><%= listing.description %> <br />
-            <b class="mt-2">Price: </b>&#8377;<%=
-            listing.price.toLocaleString("en-IN") %>
+          <p class="card-text text-capitalize text-secondary">
+            <span class="text-success">Created by: </span>
+            <%= listing.owner.username %>
+          </p>
+
+          <p class="card-text text-secondary">
+            <span class="text-success">Description: </span><%=
+            listing.description %>
+          </p>
+
+          <p class="card-text text-capitalize text-secondary">
+            <span class="text-success">Price: </span
+            >&#8377;<%=listing.price.toLocaleString("en-IN") %>
             <span class="text-lowercase">/night</span>
-            <br />
-            <b class="mt-2">Location: </b><%= listing.location %> <br />
-            <b class="mt-2">Country: </b><%= listing.country %>
+          </p>
+          <p class="card-text text-capitalize text-secondary">
+            <span class="text-success">Location: </span><%= listing.location %>
+          </p>
+          <p class="card-text text-capitalize text-secondary">
+            <span class="text-success">Country: </span><%= listing.country %>
           </p>
         </div>
       </div>
