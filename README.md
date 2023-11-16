@@ -46,9 +46,11 @@ Contributions are welcome! Feel free to open issues or submit pull requests for 
 
 Here are some snapshots of WanderNest in action:
 
-![image](https://github.com/aruncode49/WanderNest/assets/112400317/f83fb296-d637-49d5-8a1b-277336562990)
+![image](https://github.com/aruncode49/WanderNest/assets/112400317/bc9f15bb-c8b4-4457-8e20-714d9f3db543)
 
-![image](https://github.com/aruncode49/WanderNest/assets/112400317/cc35ba98-eb11-4497-aa85-20671a5b35f4)
+
+![image](https://github.com/aruncode49/WanderNest/assets/112400317/1d984cce-1497-47f1-831c-ea7f8f122388)
+
 
 
 ## License
